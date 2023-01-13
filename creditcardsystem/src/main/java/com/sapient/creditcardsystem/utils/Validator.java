@@ -4,8 +4,15 @@ import com.sapient.creditcardsystem.model.CreditCard;
 
 public class Validator {
 
-    public boolean validateCardDetails(CreditCard creditCard) {
+    public static boolean validateCardDetails(CreditCard creditCard) {
         String cardNumber = creditCard.getCardNumber();
+
+        cardNumber = cardNumber.replaceAll("\\s", "");
+        String regex = "\\d+";
+        if(!cardNumber.matches(regex)) {
+            return false;
+        }
+
         int sum = 0;
         boolean alternate=false;
         for(int i=cardNumber.length()-1; i>=0; i--) {
